@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Profissional</title>
+    <style>
+        /* --- RESET E BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #121212; color: #e0e0e0; line-height: 1.6; }
+
+        /* --- 1. CAPA (HERO) --- */
+        .capa {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .capa h1 { font-size: 3.5rem; color: #fff; letter-spacing: 2px; margin-bottom: 10px; }
+        .capa p { font-size: 1.2rem; color: #00d1b2; }
+
+        /* --- 2. MENU STICKY --- */
+        .menu {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            background: #1a1a1a;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            flex-wrap: wrap;
+        }
+        .menu a {
+            color: #bbb;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+        .menu a:hover { color: #00d1b2; }
+
+        /* --- 3. SEÇÕES E SLIDERS --- */
+        .secao {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .secao h2 { 
+            font-size: 2rem; 
+            margin-bottom: 30px; 
+            color: #fff; 
+            border-left: 5px solid #00d1b2; 
+            padding-left: 15px;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+        .slider-container::-webkit-scrollbar { display: none; }
+
+        .slide {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        /* Cores de fundo para os slides (Substitua por imagens depois) */
+        .tema-1 { 
+            background-image: url('Portifolio/Prancheta 4 (2).png');
+            background-size: cover;    /* Faz a imagem cobrir o slide todo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat; 
+        }
+        .tema-11 { 
+            background-image: url('Portifolio/Prancheta 3 (2).png');
+            background-size: cover;    /* Faz a imagem cobrir o slide todo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat; 
+        }
+        .tema-12 { 
+            background-image: url('Portifolio/Prancheta 5.png');
+            background-size: cover;    /* Faz a imagem cobrir o slide todo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat; 
+        }
+        .tema-2 {
+            background-image: url('Portifolio/Slide 1.png');
+            background-size: cover;    /* Faz a imagem cobrir o slide todo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat;
+        }
+        .tema-21 {
+            background-image: url('Portifolio/Prancheta.png');
+            background-size: cover;    /* Faz a imagem cobrir o slide todo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat;
+        }
+        .tema-22 {
+            background-image: url('Portifolio/Prancheta 2.png');
+            background-size: cover;    /* Faz a imagem cobrir o slide todo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat;
+        }
+        .tema-3 {
+            background-image: url('Portifolio/Prancheta 6.png');
+            background-size: cover;    /* Faz a imagem cobrir o slide todo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat;
+        }
+        .tema-31 {
+            background-image: url('Portifolio/Prancheta 7.png');
+            background-size: cover;    /* Faz a imagem cobrir o slide todo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat;
+        }
+        .tema-32 {
+            background-image: url('Portifolio/Prancheta 8.png');
+            background-size: cover;    /* Faz a imagem cobrir o slide todo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat;
+        }
+
+        /* --- SETAS --- */
+        .seta {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 24px;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .seta:hover { background: #00d1b2; color: #000; }
+        .seta-esq { left: 20px; }
+        .seta-dir { right: 20px; }
+
+        /* --- SEÇÕES EXTRAS (SOBRE E CONTATO) --- */
+        #sobre, #contato { background-color: #1a1a1a; margin-top: 20px; border-radius: 15px; }
+        .contato-info { display: flex; justify-content: center; gap: 40px; margin-top: 20px; }
+        .contato-item { color: #00d1b2; font-weight: bold; }
+
+        footer { text-align: center; padding: 50px; color: #555; font-size: 0.9rem; }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .capa h1 { font-size: 2.2rem; }
+            .slide { height: 350px; }
+            .menu { gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CAPA -->
+    <header class="capa" id="home">
+        <h1>KEVIN CARVALHO</h1>
+        <p>Designer | Ilustrador | Criações</p>
+    </header>
+
+    <!-- MENU STICKY -->
+    <nav class="menu">
+        <a href="#home">Início</a>
+        <a href="#design">Design</a>
+        <a href="#web">Ilustração</a>
+        <a href="#mobile">Criações</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+    </nav>
+
+    <!-- SLIDER 1: DESIGN -->
+    <section id="design" class="secao">
+        <h2>Trabalhos de Design</h2>
+        <div class="slider-wrapper js-wrapper">
+            <button class="seta seta-esq" onclick="mover(this, -1)">&#10094;</button>
+            <button class="seta seta-dir" onclick="mover(this, 1)">&#10095;</button>
+            <div class="slider-container js-slider">
+                <div class="slide tema-1"><h3></h3><p></p></div>
+                <div class="slide tema-11"><h3></h3><p></p></div>
+                <div class="slide tema-12"><h3></h3><p></p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDER 2: WEB -->
+    <section id="web" class="secao">
+        <h2>Ilustração</h2>
+        <div class="slider-wrapper js-wrapper">
+            <button class="seta seta-esq" onclick="mover(this, -1)">&#10094;</button>
+            <button class="seta seta-dir" onclick="mover(this, 1)">&#10095;</button>
+            <div class="slider-container js-slider">
+                <div class="slide tema-2"><h3></h3><p></p></div>
+                <div class="slide tema-21"><h3></h3><p></p></div>
+                <div class="slide tema-22"><h3></h3><p></p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDER 3: MOBILE -->
+    <section id="mobile" class="secao">
+        <h2>Criações</h2>
+        <div class="slider-wrapper js-wrapper">
+            <button class="seta seta-esq" onclick="mover(this, -1)">&#10094;</button>
+            <button class="seta seta-dir" onclick="mover(this, 1)">&#10095;</button>
+            <div class="slider-container js-slider">
+                <div class="slide tema-3"><h3></h3><p></p></div>
+                <div class="slide tema-31"><h3></h3><p></p></div>
+                <div class="slide tema-32"><h3></h3><p></p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO SOBRE -->
+    <section id="sobre" class="secao">
+        <h2>Sobre Mim</h2>
+        <p>Olá! Sou um profissional apaixonado artes, designers e artesanatos. Gosto da parte de criação, organização e desenvolvimentos.</p>
+        <p style="margin-top: 15px;">Habilidades: Adobe Photoshop, Ilustrator, Canvas, Office.</p>
+    </section>
+
+    <!-- SEÇÃO CONTATO -->
+    <section id="contato" class="secao">
+        <h2>Contato</h2>
+        <p>Estou disponível para novos projetos e colaborações. Vamos conversar?</p>
+        <div class="contato-info">
+            <div class="contato-item">📧 kevincarvalho781@gmail.com</div>
+            <div class="contato-item">💼 LinkedIn: /Kevin Carvalho</div>
+            <div class="contato-item">📸 Instagram: @_sr.hatake</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Kevin Carvalho. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Lógica para múltiplos sliders automatizados
+        const wrappers = document.querySelectorAll('.js-wrapper');
+
+        wrappers.forEach(wrapper => {
+            const slider = wrapper.querySelector('.js-slider');
+            let autoInterval;
+
+            const avancarSlide = () => {
+                const step = slider.clientWidth;
+                if (slider.scrollLeft + step >= slider.scrollWidth - 10) {
+                    slider.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    slider.scrollBy({ left: step, behavior: 'smooth' });
+                }
+            };
+
+            const iniciarAuto = () => autoInterval = setInterval(avancarSlide, 5000);
+            const pararAuto = () => clearInterval(autoInterval);
+
+            iniciarAuto();
+
+            // Pausa quando o mouse está sobre o slider específico
+            wrapper.addEventListener('mouseenter', pararAuto);
+            wrapper.addEventListener('mouseleave', iniciarAuto);
+        });
+
+        // Função para as setas (clique manual)
+        function mover(botao, direcao) {
+            const container = botao.parentElement.querySelector('.js-slider');
+            const largura = container.clientWidth;
+            
+            if (direcao === 1) { // Direita
+                if (container.scrollLeft + largura >= container.scrollWidth - 10) {
+                    container.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: largura, behavior: 'smooth' });
+                }
+            } else { // Esquerda
+                if (container.scrollLeft <= 0) {
+                    container.scrollTo({ left: container.scrollWidth, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: -largura, behavior: 'smooth' });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
